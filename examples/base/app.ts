@@ -68,6 +68,8 @@ axios({
     a: 1,
     b: 2
   }
+}).then(data => {
+  console.log(data)
 })
 
 axios({
