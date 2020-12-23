@@ -3,11 +3,14 @@ const bodyParser = require('body-parser')
 const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
+const cookieParser = require('cookie-parser')
 const WebpackConfig = require('./webpack.config')
 const router = express.Router()
 
 const app = express()
 const compiler = webpack(WebpackConfig)
+
+require('./server2')
 
 app.use(
   webpackDevMiddleware(compiler, {
@@ -18,6 +21,8 @@ app.use(
     }
   })
 )
+
+app.use(cookieParser())
 
 app.use(webpackHotMiddleware(compiler))
 
