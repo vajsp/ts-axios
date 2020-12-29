@@ -19,6 +19,10 @@ export function extend<T, U>(to: T, from: U): T & U {
   return to as T & U
 }
 
+export function isFormData(val: any): val is FormData {
+  return typeof val !== 'undefined' && val instanceof FormData
+}
+
 export function deepMerge(...objs: any[]) {
   let result = Object.create(null)
 

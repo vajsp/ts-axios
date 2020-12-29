@@ -1,3 +1,4 @@
+const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
 const webpack = require('webpack')
@@ -5,6 +6,8 @@ const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 const cookieParser = require('cookie-parser')
 const WebpackConfig = require('./webpack.config')
+const multipart = require('connect-multiparty')
+
 const router = express.Router()
 
 const app = express()
@@ -36,6 +39,12 @@ app.use(
     setHeaders(res) {
       res.cookie('XSRF-TOKEN-D', '1234abc')
     }
+  })
+)
+
+app.use(
+  multipart({
+    uploadDir: path.resolve(__dirname, 'upload-file')
   })
 )
 
